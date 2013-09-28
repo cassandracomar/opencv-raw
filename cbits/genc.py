@@ -262,12 +262,29 @@ class CWrapperGenerator(object):
             self.add_type(a.tp, None)
 
         if name in self.funcs.keys():
-            #overloaded function...
-            name += str(len(args))
+            name = self.fix_overloaded_func(name, len(args))
 
         self.funcs[name] = FuncInfo(bareclassname, name, cname,
                                     decl[1], isconstructor, ismethod, args)
         self.add_type(decl[1], None)
+
+    def fix_overloaded_func(self, n, nargs):
+        name = n
+
+        name += str(nargs)
+
+        i = 0
+        #ugly, but keeps with the old behavior and adds to it.
+        if name in self.funcs.keys():
+            while True:
+                #overloaded function with the same number of args :/
+                if not name + "_" + str(i) in self.funcs.keys():
+                    break
+                else:
+                    i += 1
+        if i != 0:
+            name += "_" + str(i)
+        return name
 
     def add_type(self, name, decl):
         typeinfo = TypeInfo(name, decl)
