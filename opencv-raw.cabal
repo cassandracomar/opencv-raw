@@ -3,9 +3,9 @@
 
 name:                opencv-raw
 version:             0.1.0.0
-synopsis:            Raw Haskell bindings to OpenCV >= 2.1
+synopsis:            Raw Haskell bindings to OpenCV >= 2.0
 -- description:         
-homepage:            www.github.com/arjuncomar/opencv-raw.git
+homepage:            https://www.github.com/arjuncomar/opencv-raw.git
 license:             BSD3
 license-file:        LICENSE
 author:              Arjun Comar
@@ -15,6 +15,10 @@ category:            AI, Machine Vision
 build-type:          Custom
 -- extra-source-files:  
 cabal-version:       >=1.10
+
+source-repository head
+    type git
+    location: git://github.com/arjuncomar/opencv-raw.git
 
 library
     include-dirs:           cbits/
