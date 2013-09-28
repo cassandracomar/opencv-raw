@@ -10,6 +10,10 @@ category:            AI, Machine Vision
 build-type:          Custom
 cabal-version:       >=1.10
 
+source-repository head
+    type: git
+    location: git://github.com
+
 library
     include-dirs:           cbits/
     includes:               cbits/opencv_generated.hpp
