@@ -1,0 +1,12 @@
+*cabal*sandbox*
+dist
+cabal-dev
+*.o
+*.hi
+*.chi
+*.chs.h
+.virthualenv
+tags
+core_parsed
+__pycache__
+*.pyc
