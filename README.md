@@ -87,17 +87,18 @@ translation is as follows:
 
     Ret* cv_wrapped_function(Arg1* arg1, Arg2 arg2, int arg3...) -> 
     c'cv_wrapped_function :: Ptr C'Arg1 -> C'Arg2 -> CInt ... -> IO (Ptr Ret)
+
+Function pointers are also available as 
+     
+    p'cv_wrapped_function
     
 Similar to the C API, these functions are not meant to be used directly. They're all stuck in IO and provide a rather
 inconvenient API. The programming model feels a little worse than it would trying to use those wrapped functions in C.
-Instead, a higher level API is exposed by this module (under active development). Function pointers are also available
-as 
-    p'cv_wrapped_function
+Instead, a higher level API is exposed by a [related module (under active development)](https://github.com/arjuncomar/revelation.git). 
     
 Types are exposed primarily as opaque pointers that you can interact with via the provided functions. Classes are transformed
 into types as:
 
     /Classname/ -> C'/Classname/
     
-Beyond that, there's not much to say. The same caveats apply as with the C bindings. These modules are available under 
-Revelation/Bindings, and they are explicitly not exported by the package. They are not intended for real use.
+Beyond that, there's not much to say. The same caveats apply as with the C bindings: they are not intended for direct use.
