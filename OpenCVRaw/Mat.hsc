@@ -5,12 +5,7 @@ module OpenCVRaw.Mat where
 #strict_import
 
 import OpenCVRaw.Types
-import Foreign.C
-import Foreign.C.Types
-import Foreign.Ptr
-import Foreign.ForeignPtr
-import Data.Vector.Storable
-
+import Foreign
 
 #ccall cv_create_Mat        , IO (Ptr <Mat>)
 #ccall cv_Mat_getRow        , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
@@ -47,4 +42,5 @@ import Data.Vector.Storable
 #ccall cv_Mat_reshape_rows  , Ptr <Mat> -> CInt -> CInt -> IO (Ptr <Mat>)
 
 #ccall cv_Mat_ptr           , Ptr <Mat> -> IO (Ptr CUChar)
+#ccall cv_Mat_ptr_index     , Ptr <Mat> -> CInt -> IO (Ptr CUChar)
 

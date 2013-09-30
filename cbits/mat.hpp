@@ -50,5 +50,6 @@ int cv_Mat_empty(Mat* self);
 Size* cv_Mat_size(Mat* self);
 size_t cv_Mat_step1(Mat* self);
 uchar* cv_Mat_ptr(Mat* self);
+uchar* cv_Mat_ptr_index(Mat* self, int i);
 }
 

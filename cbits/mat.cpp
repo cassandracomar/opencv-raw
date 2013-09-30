@@ -145,4 +145,8 @@ size_t cv_Mat_step1(Mat* self) {
 uchar* cv_Mat_ptr(Mat* self) {
     return self->ptr();
 }
+
+uchar* cv_Mat_ptr_index(Mat* self, int i) {
+    return self->ptr(i);
+}
 }
