@@ -149,4 +149,24 @@ uchar* cv_Mat_ptr(Mat* self) {
 uchar* cv_Mat_ptr_index(Mat* self, int i) {
     return self->ptr(i);
 }
+
+Mat* cv_create_identity(int rows, int cols, int type) {
+    return new Mat(Mat::eye(rows, cols, type));
+}
+
+Mat* cv_create_ones(int rows, int cols, int type) {
+    return new Mat(Mat::ones(rows, cols, type));
+}
+
+Mat* cv_create_zeros(int rows, int cols, int type) {
+    return new Mat(Mat::zeros(rows, cols, type));
+}
+
+Mat* cv_Mat_transpose_mat(Mat* self) {
+    return new Mat(self->t());
+}
+
+Mat* cv_Mat_inv_mat(Mat* self, int method) {
+    return new Mat(self->inv(method));
+}
 }

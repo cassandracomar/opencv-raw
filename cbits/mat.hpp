@@ -51,5 +51,10 @@ Size* cv_Mat_size(Mat* self);
 size_t cv_Mat_step1(Mat* self);
 uchar* cv_Mat_ptr(Mat* self);
 uchar* cv_Mat_ptr_index(Mat* self, int i);
+Mat* cv_create_identity(int rows, int cols, int type);
+Mat* cv_create_ones(int rows, int cols, int type);
+Mat* cv_create_zeros(int rows, int cols, int type);
+Mat* cv_Mat_transpose_mat(Mat* self);
+Mat* cv_Mat_inv_mat(Mat* self, int method);
 }
 

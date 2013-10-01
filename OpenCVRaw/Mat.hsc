@@ -7,7 +7,19 @@ module OpenCVRaw.Mat where
 import OpenCVRaw.Types
 import Foreign
 
+#num CV_64FC1
+#num CV_32FC1
+#num CV_32SC1
+#num CV_16SC1
+#num CV_8SC1
+#num CV_64FC3
+#num CV_32FC3
+#num CV_32SC3
+#num CV_16SC3
+#num CV_8SC3
+
 #ccall cv_create_Mat        , IO (Ptr <Mat>)
+#ccall cv_create_Mat_typed  , CInt -> CInt -> CInt -> IO (Ptr <Mat>)
 #ccall cv_Mat_getRow        , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
 #ccall cv_Mat_getCol        , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
 #ccall cv_Mat_getRowRange   , Ptr <Mat> -> CInt -> CInt -> IO (Ptr <Mat>)
@@ -24,9 +36,8 @@ import Foreign
 #ccall cv_Mat_empty         , Ptr <Mat> -> IO CInt
 #ccall cv_Mat_size          , Ptr <Mat> -> IO (Ptr <Size>)
 #ccall cv_Mat_step1         , Ptr <Mat> -> IO CSize
-#ccall cv_Mat_diag          , Ptr <Mat> -> IO (Ptr <Mat>)
-#ccall cv_Mat_diag_d        , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
-#ccall cv_create_diagMat    , Ptr <Mat> -> IO (Ptr <Mat>)
+#ccall cv_Mat_ptr           , Ptr <Mat> -> IO (Ptr CUChar)
+#ccall cv_Mat_ptr_index     , Ptr <Mat> -> CInt -> IO (Ptr CUChar)
 
 #ccall cv_Mat_assign        , Ptr <Mat> -> Ptr <Mat> -> IO (Ptr <Mat>) 
 #ccall cv_Mat_assignVal     , Ptr <Mat> -> Ptr <Scalar> -> IO (Ptr <Mat>) 
@@ -41,6 +52,12 @@ import Foreign
 #ccall cv_Mat_reshape       , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
 #ccall cv_Mat_reshape_rows  , Ptr <Mat> -> CInt -> CInt -> IO (Ptr <Mat>)
 
-#ccall cv_Mat_ptr           , Ptr <Mat> -> IO (Ptr CUChar)
-#ccall cv_Mat_ptr_index     , Ptr <Mat> -> CInt -> IO (Ptr CUChar)
+#ccall cv_Mat_diag          , Ptr <Mat> -> IO (Ptr <Mat>)
+#ccall cv_Mat_diag_d        , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
+#ccall cv_create_diagMat    , Ptr <Mat> -> IO (Ptr <Mat>)
+#ccall cv_create_identity   , CInt -> CInt -> CInt -> IO (Ptr <Mat>)
+#ccall cv_create_ones       , CInt -> CInt -> CInt -> IO (Ptr <Mat>)
+#ccall cv_create_zeros      , CInt -> CInt -> CInt -> IO (Ptr <Mat>)
 
+#ccall cv_Mat_transpose_mat , Ptr <Mat> -> IO (Ptr <Mat>)
+#ccall cv_Mat_inv_mat       , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
