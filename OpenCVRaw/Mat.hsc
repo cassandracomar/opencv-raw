@@ -18,6 +18,9 @@ import Foreign
 #num CV_16SC3
 #num CV_8SC3
 
+#opaque_t MatExpr
+#opaque_t Scalar
+
 #ccall cv_create_Mat        , IO (Ptr <Mat>)
 #ccall cv_create_Mat_typed  , CInt -> CInt -> CInt -> IO (Ptr <Mat>)
 #ccall cv_Mat_getRow        , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
@@ -59,5 +62,10 @@ import Foreign
 #ccall cv_create_ones       , CInt -> CInt -> CInt -> IO (Ptr <Mat>)
 #ccall cv_create_zeros      , CInt -> CInt -> CInt -> IO (Ptr <Mat>)
 
-#ccall cv_Mat_transpose_mat , Ptr <Mat> -> IO (Ptr <Mat>)
-#ccall cv_Mat_inv_mat       , Ptr <Mat> -> CInt -> IO (Ptr <Mat>)
+#ccall promote              , Ptr <Mat> -> Ptr <MatExpr>
+#ccall force                , Ptr <MatExpr> -> IO (Ptr <Mat>)
+#ccall cv_Mat_transpose_mat , Ptr <MatExpr> -> Ptr <MatExpr>
+#ccall cv_Mat_inv_mat       , Ptr <MatExpr> -> CInt -> Ptr <MatExpr>
+#ccall cv_Mat_add           , Ptr <MatExpr> -> Ptr <MatExpr> -> Ptr <MatExpr>
+#ccall cv_Mat_mult          , Ptr <MatExpr> -> Ptr <MatExpr> -> Ptr <MatExpr>
+

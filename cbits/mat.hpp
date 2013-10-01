@@ -54,7 +54,11 @@ uchar* cv_Mat_ptr_index(Mat* self, int i);
 Mat* cv_create_identity(int rows, int cols, int type);
 Mat* cv_create_ones(int rows, int cols, int type);
 Mat* cv_create_zeros(int rows, int cols, int type);
-Mat* cv_Mat_transpose_mat(Mat* self);
-Mat* cv_Mat_inv_mat(Mat* self, int method);
+MatExpr* cv_Mat_transpose_mat(Mat* self);
+MatExpr* cv_Mat_inv_mat(Mat* self, int method);
+MatExpr* cv_Mat_add(Mat* m1, Mat* m2);
+MatExpr* cv_Mat_mult(Mat* m1, Mat* m2);
+Mat* force(MatExpr* expr);
+MatExpr* promote(Mat* m);
 }
 

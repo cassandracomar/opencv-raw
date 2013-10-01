@@ -44,9 +44,11 @@ Mat* cv_Mat_getCol(Mat* self, int x) {
 Mat* cv_Mat_getRowRange(Mat* self, int startrow, int endrow) {
     return new Mat(self->rowRange(startrow, endrow));
 }
+
 Mat* cv_Mat_getColRange(Mat* self, int startcol, int endrow) {
     return new Mat(self->colRange(startcol, endrow));
 }
+
 Mat* cv_Mat_diag(Mat* self) {
     return new Mat(self->diag());
 }
@@ -99,7 +101,6 @@ Mat* cv_Mat_reshape_rows(Mat* self, int cn, int rows) {
    return new Mat(self->reshape(cn, rows)); 
 }
 
-
 size_t cv_Mat_elemSize(Mat* self) {
     return self->elemSize();
 }
@@ -127,21 +128,27 @@ bool cv_Mat_isContinuous(Mat* self) {
 int cv_Mat_channels(Mat* self) {
     return self->channels();
 }
+
 int cv_Mat_rows(Mat* self) {
     return self->rows;
 }
+
 int cv_Mat_cols(Mat* self) {
     return self->cols;
 }
+
 int cv_Mat_empty(Mat* self) {
     return self->empty();
 }
+
 Size* cv_Mat_size(Mat* self) {
     return new Size(self->size());
 }
+
 size_t cv_Mat_step1(Mat* self) {
     return self->step1();
 }
+
 uchar* cv_Mat_ptr(Mat* self) {
     return self->ptr();
 }
@@ -162,11 +169,30 @@ Mat* cv_create_zeros(int rows, int cols, int type) {
     return new Mat(Mat::zeros(rows, cols, type));
 }
 
-Mat* cv_Mat_transpose_mat(Mat* self) {
-    return new Mat(self->t());
+MatExpr* cv_Mat_transpose_mat(Mat* self) {
+    return new MatExpr(self->t());
 }
 
-Mat* cv_Mat_inv_mat(Mat* self, int method) {
-    return new Mat(self->inv(method));
+MatExpr* cv_Mat_inv_mat(Mat* self, int method) {
+    return new MatExpr(self->inv(method));
 }
+
+MatExpr* cv_Mat_add(Mat* m1, Mat* m2) {
+    return new MatExpr(*m1 + *m2);
+}
+
+MatExpr* cv_Mat_mult(Mat* m1, Mat* m2) {
+    return new MatExpr(*m1 * *m2);
+}
+
+Mat* force(MatExpr* expr) {
+    Mat* p = new Mat;
+    *p = *expr;
+    return p;
+}
+
+MatExpr* promote(Mat* m) {
+    return new MatExpr(*m);
+}
+
 }
