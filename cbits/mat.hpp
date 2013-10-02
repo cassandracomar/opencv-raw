@@ -61,5 +61,9 @@ MatExpr* cv_Mat_mult(Mat* m1, Mat* m2);
 Mat* force(MatExpr* expr);
 MatExpr* promote(Mat* m);
 MatExpr* cv_Mat_scale(MatExpr* m, double alpha);
+double cv_Mat_dot(Mat* self, Mat* m);
+Mat* cv_Mat_cross(Mat* self, Mat* m);
+void cv_Mat_locateROI(Mat* self, Size* s, Point* p);
+Mat* cv_Mat_adjustROI(Mat* self, int dtop, int dbottom, int dleft, int dright);
 }
 

@@ -68,3 +68,9 @@ import Foreign
 #ccall cv_Mat_add           , Ptr <MatExpr> -> Ptr <MatExpr> -> Ptr <MatExpr>
 #ccall cv_Mat_mult          , Ptr <MatExpr> -> Ptr <MatExpr> -> Ptr <MatExpr>
 #ccall cv_Mat_scale         , Ptr <MatExpr> -> CDouble -> Ptr <MatExpr>
+
+#ccall cv_Mat_dot           , Ptr <Mat> -> Ptr <Mat> -> CDouble
+#ccall cv_Mat_cross         , Ptr <Mat> -> Ptr <Mat> -> Ptr <Mat>
+
+#ccall cv_Mat_locateROI     , Ptr <Mat> -> Ptr <Size> -> Ptr <Point> -> IO ()
+#ccall cv_Mat_adjustROI     , Ptr <Mat> -> CInt -> CInt -> CInt -> CInt -> IO (Ptr <Mat>)

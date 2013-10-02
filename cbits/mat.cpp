@@ -198,4 +198,21 @@ MatExpr* promote(Mat* m) {
 MatExpr* cv_Mat_scale(MatExpr* m, double alpha) {
     return new MatExpr(*m * alpha);
 }
+
+double cv_Mat_dot(Mat* self, Mat* m) {
+    return self->dot(*m);
+}
+
+Mat* cv_Mat_cross(Mat* self, Mat* m) {
+    return new Mat(self->cross(*m));
+}
+
+void cv_Mat_locateROI(Mat* self, Size* s, Point* p) {
+    self->locateROI(*s, *p);
+}
+
+Mat* cv_Mat_adjustROI(Mat* self, int dtop, int dbottom, int dleft, int dright) {
+    return new Mat(self->adjustROI(dtop, dbottom, dleft, dright));
+}
+
 }
