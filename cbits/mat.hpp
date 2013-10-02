@@ -60,5 +60,6 @@ MatExpr* cv_Mat_add(Mat* m1, Mat* m2);
 MatExpr* cv_Mat_mult(Mat* m1, Mat* m2);
 Mat* force(MatExpr* expr);
 MatExpr* promote(Mat* m);
+MatExpr* cv_Mat_scale(MatExpr* m, double alpha);
 }
 

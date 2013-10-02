@@ -195,4 +195,7 @@ MatExpr* promote(Mat* m) {
     return new MatExpr(*m);
 }
 
+MatExpr* cv_Mat_scale(MatExpr* m, double alpha) {
+    return new MatExpr(*m * alpha);
+}
 }
