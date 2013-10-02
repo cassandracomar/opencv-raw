@@ -29,8 +29,10 @@ following is sufficient:
 
     cabal build --with-gcc=g++
       
-The repl command doesn't work with this library and GHC <=7.6 due to a longstanding bug with ghci and dynamically
-linked libraries.
+The build currently doesn't work with GHC 7.6 and clang++ because hsc2hs doesn't insert a cast in a generated c file.
+This issue has been fixed in GHC HEAD, so this issue should disappear with the release of 7.8. Similarly, the repl command 
+doesn't work with this library and GHC 7.6 due to a longstanding bug with ghci and dynamically linked libraries. This has also 
+been fixed in HEAD.
 
 Check [revelation](https://github.com/arjuncomar/revelation) for a library built on these raw bindings.
 
