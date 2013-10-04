@@ -79,7 +79,7 @@ them useful. Most languages can interoperate with C, but very few can interopera
 
 Classes are not converted to structs and instead the wrapper deals with them as opaque pointers. Again, the
 intention is not to create a fully featured C API. Instead, the API is made more pleasant and usable from
-the Haskell side. When making bindings available through these wrappers, a similar approach should be employed.
+the Haskell side. When making bindings available through these wrappers a similar approach should be employed.
 
 Haskell Bindings
 ----------------
