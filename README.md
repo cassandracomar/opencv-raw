@@ -9,7 +9,7 @@ Compilation / Installation
 
 Compiling this package might be a little tricky at the moment since I've only had the chance to test it on my machine
 so far. First, you need to generate C wrappers for the version of OpenCV on your machine -- this repo holds the wrappers
-for OpenCV 2.4.6 only. You can generate these wrappers (and the corresponding Haskell bindings) via:
+for OpenCV 3.0 (HEAD) only. You can generate these wrappers (and the corresponding Haskell bindings) via:
 
     ./setup.sh <path to opencv headers>
       
