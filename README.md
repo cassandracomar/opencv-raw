@@ -3,6 +3,8 @@ opencv-raw
 
 Raw Haskell bindings to OpenCV >= 2.0
 
+This package is headed for inclusion into OpenCV.
+
 
 Compilation / Installation
 ------------
