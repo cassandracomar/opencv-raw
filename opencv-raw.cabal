@@ -19,7 +19,7 @@ library
     includes:               cbits/opencv_generated.hpp
                           , cbits/cpptypes.hpp
                           , cbits/mat.hpp
-                          , cbits/capture_from_file.h
+                          , cbits/capture_from_file.hpp
     c-sources:              cbits/opencv_generated.cpp
                           , cbits/cpptypes.cpp
                           , cbits/mat.cpp

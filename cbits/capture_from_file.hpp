@@ -5,6 +5,8 @@
 using namespace cv;
 using namespace std;
 
+extern "C" {
 VideoCapture* cv_create_VideoCapture_file(const char*);
+}
 
 #endif

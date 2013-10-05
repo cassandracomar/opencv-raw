@@ -10,3 +10,4 @@ tags
 core_parsed
 __pycache__
 *.pyc
+*~

@@ -4,6 +4,7 @@
 module OpenCVRaw.CapFile where
 #strict_import
 import Foreign.C
+import Foreign.Ptr
 import Foreign.C.Types
 import OpenCVRaw.Types
 
