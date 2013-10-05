@@ -5,6 +5,6 @@
 using namespace cv;
 using namespace std;
 
-VideoCapture* cv_create_VideoCapture_file(const string&);
+VideoCapture* cv_create_VideoCapture_file(const char*);
 
 #endif

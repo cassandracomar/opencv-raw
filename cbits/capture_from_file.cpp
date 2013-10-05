@@ -2,6 +2,7 @@
 using namespace cv;
 using namespace std;
 
-VideoCapture* cv_create_VideoCapture_file(const string& filename) {
-	return new VideoCapture(filename);
+VideoCapture* cv_create_VideoCapture_file(const char *filename) {
+  string fname (filename);
+  return new VideoCapture(filename);
 }
