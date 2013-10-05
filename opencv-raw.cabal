@@ -19,9 +19,11 @@ library
     includes:               cbits/opencv_generated.hpp
                           , cbits/cpptypes.hpp
                           , cbits/mat.hpp
+                          , cbits/capture_from_file.h
     c-sources:              cbits/opencv_generated.cpp
                           , cbits/cpptypes.cpp
                           , cbits/mat.cpp
+                          , cbits/capture_from_file.cpp
     cc-options:             -fpermissive -O3
     if arch(x86_64)
       cc-options:             -fpermissive -O3 -DPRIuMAX="lu" -DPRIdMAX="ld"
