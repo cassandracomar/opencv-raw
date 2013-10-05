@@ -13,12 +13,6 @@ BRISK* cv_create_BRISK(int thresh, int octaves, float patternScale) {
 BRISK* cv_create_BRISK5(vector_float* radiusList, vector_int* numberList, float dMax, float dMin, vector_int* indexChange) {
 	return new BRISK(*radiusList, *numberList, dMax, dMin, *indexChange);
 }
-BackgroundSubtractorMOG* cv_create_BackgroundSubtractorMOG() {
-	return new BackgroundSubtractorMOG();
-}
-BackgroundSubtractorMOG* cv_create_BackgroundSubtractorMOG4(int history, int nmixtures, double backgroundRatio, double noiseSigma) {
-	return new BackgroundSubtractorMOG(history, nmixtures, backgroundRatio, noiseSigma);
-}
 RotatedRect* cv_CamShift(Mat* probImage, Rect* window, TermCriteria* criteria) {
 	return new RotatedRect(cv::CamShift(*probImage, *window, *criteria));
 }
@@ -28,7 +22,7 @@ void cv_Canny(Mat* image, Mat* edges, double threshold1, double threshold2, int 
 CascadeClassifier* cv_create_CascadeClassifier() {
 	return new CascadeClassifier();
 }
-CascadeClassifier* cv_create_CascadeClassifier1(string* filename) {
+CascadeClassifier* cv_create_CascadeClassifier1(String* filename) {
 	return new CascadeClassifier(*filename);
 }
 CvANN_MLP* cv_create_CvANN_MLP() {
@@ -76,32 +70,17 @@ CvSVM* cv_create_CvSVM() {
 CvSVM* cv_create_CvSVM5(Mat* trainData, Mat* responses, Mat* varIdx, Mat* sampleIdx, CvSVMParams* params) {
 	return new CvSVM(*trainData, *responses, *varIdx, *sampleIdx, *params);
 }
-DMatch* cv_create_DMatch() {
-	return new DMatch();
-}
-DMatch* cv_create_DMatch3(int _queryIdx, int _trainIdx, float _distance) {
-	return new DMatch(_queryIdx, _trainIdx, _distance);
-}
-DMatch* cv_create_DMatch4(int _queryIdx, int _trainIdx, int _imgIdx, float _distance) {
-	return new DMatch(_queryIdx, _trainIdx, _imgIdx, _distance);
-}
 EM* cv_create_EM(int nclusters, int covMatType, TermCriteria* termCrit) {
 	return new EM(nclusters, covMatType, *termCrit);
 }
 FastFeatureDetector* cv_create_FastFeatureDetector(int threshold, bool nonmaxSuppression) {
 	return new FastFeatureDetector(threshold, nonmaxSuppression);
 }
-FileNode* cv_create_FileNode() {
-	return new FileNode();
-}
-FileStorage* cv_create_FileStorage() {
-	return new FileStorage();
-}
-FileStorage* cv_create_FileStorage3(string* source, int flags, string* encoding) {
-	return new FileStorage(*source, flags, *encoding);
+FastFeatureDetector* cv_create_FastFeatureDetector3(int threshold, bool nonmaxSuppression, int type) {
+	return new FastFeatureDetector(threshold, nonmaxSuppression, type);
 }
 FlannBasedMatcher* cv_create_FlannBasedMatcher(flann_IndexParams* indexParams, flann_SearchParams* searchParams) {
-	return new FlannBasedMatcher(indexParams, searchParams);
+	return new FlannBasedMatcher(Ptr<flann_IndexParams>(indexParams), Ptr<flann_SearchParams>(searchParams));
 }
 GFTTDetector* cv_create_GFTTDetector(int maxCorners, double qualityLevel, double minDistance, int blockSize, bool useHarrisDetector, double k) {
 	return new GFTTDetector(maxCorners, qualityLevel, minDistance, blockSize, useHarrisDetector, k);
@@ -110,7 +89,7 @@ void cv_GaussianBlur(Mat* src, Mat* dst, Size* ksize, double sigmaX, double sigm
 	cv::GaussianBlur(*src, *dst, *ksize, sigmaX, sigmaY, borderType);
 }
 GridAdaptedFeatureDetector* cv_create_GridAdaptedFeatureDetector(FeatureDetector* detector, int maxTotalKeypoints, int gridRows, int gridCols) {
-	return new GridAdaptedFeatureDetector(detector, maxTotalKeypoints, gridRows, gridCols);
+	return new GridAdaptedFeatureDetector(Ptr<FeatureDetector>(detector), maxTotalKeypoints, gridRows, gridCols);
 }
 HOGDescriptor* cv_create_HOGDescriptor() {
 	return new HOGDescriptor();
@@ -154,14 +133,8 @@ KalmanFilter* cv_create_KalmanFilter() {
 KalmanFilter* cv_create_KalmanFilter4(int dynamParams, int measureParams, int controlParams, int type) {
 	return new KalmanFilter(dynamParams, measureParams, controlParams, type);
 }
-KeyPoint* cv_create_KeyPoint() {
-	return new KeyPoint();
-}
-KeyPoint* cv_create_KeyPoint7(float x, float y, float _size, float _angle, float _response, int _octave, int _class_id) {
-	return new KeyPoint(x, y, _size, _angle, _response, _octave, _class_id);
-}
-void cv_LUT(Mat* src, Mat* lut, Mat* dst, int interpolation) {
-	cv::LUT(*src, *lut, *dst, interpolation);
+void cv_LUT(Mat* src, Mat* lut, Mat* dst) {
+	cv::LUT(*src, *lut, *dst);
 }
 void cv_Laplacian(Mat* src, Mat* dst, int ddepth, int ksize, double scale, double delta, int borderType) {
 	cv::Laplacian(*src, *dst, ddepth, ksize, scale, delta, borderType);
@@ -181,8 +154,8 @@ void cv_PCABackProject(Mat* data, Mat* mean, Mat* eigenvectors, Mat* result) {
 void cv_PCACompute(Mat* data, Mat* mean, Mat* eigenvectors, int maxComponents) {
 	cv::PCACompute(*data, *mean, *eigenvectors, maxComponents);
 }
-void cv_PCAComputeVar(Mat* data, Mat* mean, Mat* eigenvectors, double retainedVariance) {
-	cv::PCAComputeVar(*data, *mean, *eigenvectors, retainedVariance);
+void cv_PCACompute4(Mat* data, Mat* mean, Mat* eigenvectors, double retainedVariance) {
+	cv::PCACompute(*data, *mean, *eigenvectors, retainedVariance);
 }
 void cv_PCAProject(Mat* data, Mat* mean, Mat* eigenvectors, Mat* result) {
 	cv::PCAProject(*data, *mean, *eigenvectors, *result);
@@ -194,7 +167,7 @@ Params* cv_create_Params() {
 	return new Params();
 }
 PyramidAdaptedFeatureDetector* cv_create_PyramidAdaptedFeatureDetector(FeatureDetector* detector, int maxLevel) {
-	return new PyramidAdaptedFeatureDetector(detector, maxLevel);
+	return new PyramidAdaptedFeatureDetector(Ptr<FeatureDetector>(detector), maxLevel);
 }
 Vec3d* cv_RQDecomp3x3(Mat* src, Mat* mtxR, Mat* mtxQ, Mat* Qx, Mat* Qy, Mat* Qz) {
 	return new Vec3d(cv::RQDecomp3x3(*src, *mtxR, *mtxQ, *Qx, *Qy, *Qz));
@@ -220,18 +193,6 @@ void cv_Sobel(Mat* src, Mat* dst, int ddepth, int dx, int dy, int ksize, double 
 StarDetector* cv_create_StarDetector(int _maxSize, int _responseThreshold, int _lineThresholdProjected, int _lineThresholdBinarized, int _suppressNonmaxSize) {
 	return new StarDetector(_maxSize, _responseThreshold, _lineThresholdProjected, _lineThresholdBinarized, _suppressNonmaxSize);
 }
-StereoBM* cv_create_StereoBM() {
-	return new StereoBM();
-}
-StereoBM* cv_create_StereoBM3(int preset, int ndisparities, int SADWindowSize) {
-	return new StereoBM(preset, ndisparities, SADWindowSize);
-}
-StereoSGBM* cv_create_StereoSGBM() {
-	return new StereoSGBM();
-}
-StereoSGBM* cv_create_StereoSGBM11(int minDisparity, int numDisparities, int SADWindowSize, int P1, int P2, int disp12MaxDiff, int preFilterCap, int uniquenessRatio, int speckleWindowSize, int speckleRange, bool fullDP) {
-	return new StereoSGBM(minDisparity, numDisparities, SADWindowSize, P1, P2, disp12MaxDiff, preFilterCap, uniquenessRatio, speckleWindowSize, speckleRange, fullDP);
-}
 StereoVar* cv_create_StereoVar() {
 	return new StereoVar();
 }
@@ -253,10 +214,10 @@ VideoCapture* cv_create_VideoCapture1(int device) {
 VideoWriter* cv_create_VideoWriter() {
 	return new VideoWriter();
 }
-VideoWriter* cv_create_VideoWriter5(string* filename, int fourcc, double fps, Size* frameSize, bool isColor) {
+VideoWriter* cv_create_VideoWriter5(String* filename, int fourcc, double fps, Size* frameSize, bool isColor) {
 	return new VideoWriter(*filename, fourcc, fps, *frameSize, isColor);
 }
-Algorithm* cv_Algorithm__create(Algorithm* self, string* name) {
+Algorithm* cv_Algorithm__create(Algorithm* self, String* name) {
 	return &*self->_create(*name);
 }
 void cv_absdiff(Mat* src1, Mat* src2, Mat* dst) {
@@ -291,6 +252,9 @@ void cv_addWeighted(Mat* src1, double alpha, Mat* src2, double beta, double gamm
 }
 void cv_CLAHE_apply(CLAHE* self, Mat* src, Mat* dst) {
 	self->apply(*src, *dst);
+}
+void cv_BackgroundSubtractor_apply3(BackgroundSubtractor* self, Mat* image, Mat* fgmask, double learningRate) {
+	self->apply(*image, *fgmask, learningRate);
 }
 void cv_applyColorMap(Mat* src, Mat* dst, int colormap) {
 	cv::applyColorMap(*src, *dst, colormap);
@@ -330,6 +294,9 @@ Rect* cv_boundingRect(Mat* points) {
 }
 void cv_boxFilter(Mat* src, Mat* dst, int ddepth, Size* ksize, Point* anchor, bool normalize, int borderType) {
 	cv::boxFilter(*src, *dst, ddepth, *ksize, *anchor, normalize, borderType);
+}
+void cv_boxPoints(RotatedRect* box, Mat* points) {
+	cv::boxPoints(*box, *points);
 }
 void cv_KDTree_build(KDTree* self, Mat* points, bool copyAndReorderPoints) {
 	self->build(*points, copyAndReorderPoints);
@@ -382,9 +349,6 @@ int cv_chamerMatching(Mat* img, Mat* templ, vector_vector_Point* results, vector
 bool cv_HOGDescriptor_checkDetectorSize(HOGDescriptor* self) {
 	return self->checkDetectorSize();
 }
-bool cv_checkHardwareSupport(int feature) {
-	return cv::checkHardwareSupport(feature);
-}
 bool cv_checkRange(Mat* a, bool quiet, Point* pos, double minVal, double maxVal) {
 	return cv::checkRange(*a, quiet, pos, minVal, maxVal);
 }
@@ -406,14 +370,17 @@ void cv_compare(Mat* src1, Mat* src2, Mat* dst, int cmpop) {
 double cv_compareHist(Mat* H1, Mat* H2, int method) {
 	return cv::compareHist(*H1, *H2, method);
 }
+int cv_LineSegmentDetector_compareSegments(LineSegmentDetector* self, Size* size, Mat* lines1, Mat* lines2, Mat* _image) {
+	return self->compareSegments(*size, *lines1, *lines2, *_image);
+}
 void cv_completeSymm(Mat* mtx, bool lowerToUpper) {
 	cv::completeSymm(*mtx, lowerToUpper);
 }
 void cv_composeRT(Mat* rvec1, Mat* tvec1, Mat* rvec2, Mat* tvec2, Mat* rvec3, Mat* tvec3, Mat* dr3dr1, Mat* dr3dt1, Mat* dr3dr2, Mat* dr3dt2, Mat* dt3dr1, Mat* dt3dt1, Mat* dt3dr2, Mat* dt3dt2) {
 	cv::composeRT(*rvec1, *tvec1, *rvec2, *tvec2, *rvec3, *tvec3, *dr3dr1, *dr3dt1, *dr3dr2, *dr3dt2, *dt3dr1, *dt3dt1, *dt3dr2, *dt3dt2);
 }
-void cv_DescriptorExtractor_compute(DescriptorExtractor* self, Mat* image, vector_KeyPoint* keypoints, Mat* descriptors) {
-	self->compute(*image, *keypoints, *descriptors);
+void cv_StereoMatcher_compute(StereoMatcher* self, Mat* left, Mat* right, Mat* disparity) {
+	self->compute(*left, *right, *disparity);
 }
 void cv_Feature2D_compute3(Feature2D* self, Mat* image, vector_KeyPoint* keypoints, Mat* descriptors) {
 	self->compute(*image, *keypoints, *descriptors);
@@ -426,6 +393,12 @@ void cv_computeCorrespondEpilines(Mat* points, int whichImage, Mat* F, Mat* line
 }
 void cv_HOGDescriptor_computeGradient(HOGDescriptor* self, Mat* img, Mat* grad, Mat* angleOfs, Size* paddingTL, Size* paddingBR) {
 	self->computeGradient(*img, *grad, *angleOfs, *paddingTL, *paddingBR);
+}
+int cv_connectedComponents(Mat* image, Mat* labels, int connectivity, int ltype) {
+	return cv::connectedComponents(*image, *labels, connectivity, ltype);
+}
+int cv_connectedComponentsWithStats(Mat* image, Mat* labels, Mat* stats, Mat* centroids, int connectivity, int ltype) {
+	return cv::connectedComponentsWithStats(*image, *labels, *stats, *centroids, connectivity, ltype);
 }
 double cv_contourArea(Mat* contour, bool oriented) {
 	return cv::contourArea(*contour, oriented);
@@ -475,8 +448,17 @@ int cv_countNonZero(Mat* src) {
 void cv_CvANN_MLP_create(CvANN_MLP* self, Mat* layerSizes, int activateFunc, double fparam1, double fparam2) {
 	self->create(*layerSizes, activateFunc, fparam1, fparam2);
 }
-DescriptorMatcher* cv_DescriptorMatcher_create1(DescriptorMatcher* self, string* descriptorMatcherType) {
+DescriptorMatcher* cv_DescriptorMatcher_create1(DescriptorMatcher* self, String* descriptorMatcherType) {
 	return &*self->create(*descriptorMatcherType);
+}
+BackgroundSubtractorGMG* cv_createBackgroundSubtractorGMG(int initializationFrames, double decisionThreshold) {
+	return &*cv::createBackgroundSubtractorGMG(initializationFrames, decisionThreshold);
+}
+BackgroundSubtractorMOG* cv_createBackgroundSubtractorMOG(int history, int nmixtures, double backgroundRatio, double noiseSigma) {
+	return &*cv::createBackgroundSubtractorMOG(history, nmixtures, backgroundRatio, noiseSigma);
+}
+BackgroundSubtractorMOG2* cv_createBackgroundSubtractorMOG2(int history, double varThreshold, bool detectShadows) {
+	return &*cv::createBackgroundSubtractorMOG2(history, varThreshold, detectShadows);
 }
 CLAHE* cv_createCLAHE(double clipLimit, Size* tileGridSize) {
 	return &*cv::createCLAHE(clipLimit, *tileGridSize);
@@ -493,8 +475,14 @@ void cv_createHanningWindow(Mat* dst, Size* winSize, int type) {
 FaceRecognizer* cv_createLBPHFaceRecognizer(int radius, int neighbors, int grid_x, int grid_y, double threshold) {
 	return &*cv::createLBPHFaceRecognizer(radius, neighbors, grid_x, grid_y, threshold);
 }
-float cv_cubeRoot(float val) {
-	return cv::cubeRoot(val);
+LineSegmentDetector* cv_createLineSegmentDetector(int _refine, double _scale, double _sigma_scale, double _quant, double _ang_th, double _log_eps, double _density_th, int _n_bins) {
+	return &*cv::createLineSegmentDetector(_refine, _scale, _sigma_scale, _quant, _ang_th, _log_eps, _density_th, _n_bins);
+}
+StereoBM* cv_createStereoBM(int numDisparities, int blockSize) {
+	return &*cv::createStereoBM(numDisparities, blockSize);
+}
+StereoSGBM* cv_createStereoSGBM(int minDisparity, int numDisparities, int blockSize, int P1, int P2, int disp12MaxDiff, int preFilterCap, int uniquenessRatio, int speckleWindowSize, int speckleRange, int mode) {
+	return &*cv::createStereoSGBM(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, preFilterCap, uniquenessRatio, speckleWindowSize, speckleRange, mode);
 }
 void cv_cvtColor(Mat* src, Mat* dst, int code, int dstCn) {
 	cv::cvtColor(*src, *dst, code, dstCn);
@@ -502,16 +490,25 @@ void cv_cvtColor(Mat* src, Mat* dst, int code, int dstCn) {
 void cv_dct(Mat* src, Mat* dst, int flags) {
 	cv::dct(*src, *dst, flags);
 }
+void cv_decomposeEssentialMat(Mat* E, Mat* R1, Mat* R2, Mat* t) {
+	cv::decomposeEssentialMat(*E, *R1, *R2, *t);
+}
 void cv_decomposeProjectionMatrix(Mat* projMatrix, Mat* cameraMatrix, Mat* rotMatrix, Mat* transVect, Mat* rotMatrixX, Mat* rotMatrixY, Mat* rotMatrixZ, Mat* eulerAngles) {
 	cv::decomposeProjectionMatrix(*projMatrix, *cameraMatrix, *rotMatrix, *transVect, *rotMatrixX, *rotMatrixY, *rotMatrixZ, *eulerAngles);
+}
+void cv_demosaicing(Mat* _src, Mat* _dst, int code, int dcn) {
+	cv::demosaicing(*_src, *_dst, code, dcn);
 }
 void cv_destroyAllWindows() {
 	cv::destroyAllWindows();
 }
-void cv_destroyWindow(string* winname) {
+void cv_destroyWindow(String* winname) {
 	cv::destroyWindow(*winname);
 }
-void cv_FeatureDetector_detect(FeatureDetector* self, Mat* image, vector_KeyPoint* keypoints, Mat* mask) {
+void cv_LineSegmentDetector_detect(LineSegmentDetector* self, Mat* _image, Mat* _lines, Mat* width, Mat* prec, Mat* nfa) {
+	self->detect(*_image, *_lines, *width, *prec, *nfa);
+}
+void cv_FeatureDetector_detect3(FeatureDetector* self, Mat* image, vector_KeyPoint* keypoints, Mat* mask) {
 	self->detect(*image, *keypoints, *mask);
 }
 void cv_HOGDescriptor_detect7(HOGDescriptor* self, Mat* img, vector_Point* foundLocations, vector_double* weights, double hitThreshold, Size* winStride, Size* padding, vector_Point* searchLocations) {
@@ -522,6 +519,9 @@ void cv_CascadeClassifier_detectMultiScale(CascadeClassifier* self, Mat* image, 
 }
 void cv_CascadeClassifier_detectMultiScale10(CascadeClassifier* self, Mat* image, vector_Rect* objects, vector_int* rejectLevels, vector_double* levelWeights, double scaleFactor, int minNeighbors, int flags, Size* minSize, Size* maxSize, bool outputRejectLevels) {
 	self->detectMultiScale(*image, *objects, *rejectLevels, *levelWeights, scaleFactor, minNeighbors, flags, *minSize, *maxSize, outputRejectLevels);
+}
+void cv_CascadeClassifier_detectMultiScale8(CascadeClassifier* self, Mat* image, vector_Rect* objects, vector_int* numDetections, double scaleFactor, int minNeighbors, int flags, Size* minSize, Size* maxSize) {
+	self->detectMultiScale(*image, *objects, *numDetections, scaleFactor, minNeighbors, flags, *minSize, *maxSize);
 }
 void cv_HOGDescriptor_detectMultiScale9(HOGDescriptor* self, Mat* img, vector_Rect* foundLocations, vector_double* foundWeights, double hitThreshold, Size* winStride, Size* padding, double scale, double finalThreshold, bool useMeanshiftGrouping) {
 	self->detectMultiScale(*img, *foundLocations, *foundWeights, hitThreshold, *winStride, *padding, scale, finalThreshold, useMeanshiftGrouping);
@@ -556,11 +556,20 @@ void cv_drawChessboardCorners(Mat* image, Size* patternSize, Mat* corners, bool 
 void cv_drawContours(Mat* image, vector_Mat* contours, int contourIdx, Scalar* color, int thickness, int lineType, Mat* hierarchy, int maxLevel, Point* offset) {
 	cv::drawContours(*image, *contours, contourIdx, *color, thickness, lineType, *hierarchy, maxLevel, *offset);
 }
-void cv_drawDataMatrixCodes(Mat* image, vector_string* codes, Mat* corners) {
+void cv_drawDataMatrixCodes(Mat* image, vector_String* codes, Mat* corners) {
 	cv::drawDataMatrixCodes(*image, *codes, *corners);
 }
 void cv_drawKeypoints(Mat* image, vector_KeyPoint* keypoints, Mat* outImage, Scalar* color, int flags) {
 	cv::drawKeypoints(*image, *keypoints, *outImage, *color, flags);
+}
+void cv_drawMatches(Mat* img1, vector_KeyPoint* keypoints1, Mat* img2, vector_KeyPoint* keypoints2, vector_DMatch* matches1to2, Mat* outImg, Scalar* matchColor, Scalar* singlePointColor, vector_char* matchesMask, int flags) {
+	cv::drawMatches(*img1, *keypoints1, *img2, *keypoints2, *matches1to2, *outImg, *matchColor, *singlePointColor, *matchesMask, flags);
+}
+void cv_drawMatches10(Mat* img1, vector_KeyPoint* keypoints1, Mat* img2, vector_KeyPoint* keypoints2, vector_vector_DMatch* matches1to2, Mat* outImg, Scalar* matchColor, Scalar* singlePointColor, vector_vector_char* matchesMask, int flags) {
+	cv::drawMatches(*img1, *keypoints1, *img2, *keypoints2, *matches1to2, *outImg, *matchColor, *singlePointColor, *matchesMask, flags);
+}
+void cv_LineSegmentDetector_drawSegments(LineSegmentDetector* self, Mat* _image, Mat* lines) {
+	self->drawSegments(*_image, *lines);
 }
 int cv_Subdiv2D_edgeDst(Subdiv2D* self, int edge, Point2f* dstpt) {
 	return self->edgeDst(edge, dstpt);
@@ -568,8 +577,8 @@ int cv_Subdiv2D_edgeDst(Subdiv2D* self, int edge, Point2f* dstpt) {
 int cv_Subdiv2D_edgeOrg(Subdiv2D* self, int edge, Point2f* orgpt) {
 	return self->edgeOrg(edge, orgpt);
 }
-bool cv_eigen(Mat* src, bool computeEigenvectors, Mat* eigenvalues, Mat* eigenvectors) {
-	return cv::eigen(*src, computeEigenvectors, *eigenvalues, *eigenvectors);
+bool cv_eigen(Mat* src, Mat* eigenvalues, Mat* eigenvectors) {
+	return cv::eigen(*src, *eigenvalues, *eigenvectors);
 }
 void cv_ellipse(Mat* img, Point* center, Size* axes, double angle, double startAngle, double endAngle, Scalar* color, int thickness, int lineType, int shift) {
 	cv::ellipse(*img, *center, *axes, angle, startAngle, endAngle, *color, thickness, lineType, shift);
@@ -580,7 +589,7 @@ void cv_ellipse2Poly(Point* center, Size* axes, int angle, int arcStart, int arc
 void cv_ellipse5(Mat* img, RotatedRect* box, Scalar* color, int thickness, int lineType) {
 	cv::ellipse(*img, *box, *color, thickness, lineType);
 }
-bool cv_FileNode_empty(FileNode* self) {
+bool cv_FeatureDetector_empty(FeatureDetector* self) {
 	return self->empty();
 }
 bool cv_CascadeClassifier_empty0(CascadeClassifier* self) {
@@ -604,9 +613,6 @@ void cv_exp(Mat* src, Mat* dst) {
 void cv_extractChannel(Mat* src, Mat* dst, int coi) {
 	cv::extractChannel(*src, *dst, coi);
 }
-float cv_fastAtan2(float y, float x) {
-	return cv::fastAtan2(y, x);
-}
 void cv_fillConvexPoly(Mat* img, Mat* points, Scalar* color, int lineType, int shift) {
 	cv::fillConvexPoly(*img, *points, *color, lineType, shift);
 }
@@ -623,16 +629,16 @@ bool cv_findChessboardCorners(Mat* image, Size* patternSize, Mat* corners, int f
 	return cv::findChessboardCorners(*image, *patternSize, *corners, flags);
 }
 bool cv_findCirclesGrid(Mat* image, Size* patternSize, Mat* centers, int flags, FeatureDetector* blobDetector) {
-	return cv::findCirclesGrid(*image, *patternSize, *centers, flags, blobDetector);
-}
-bool cv_findCirclesGridDefault(Mat* image, Size* patternSize, Mat* centers, int flags) {
-	return cv::findCirclesGridDefault(*image, *patternSize, *centers, flags);
+	return cv::findCirclesGrid(*image, *patternSize, *centers, flags, Ptr<FeatureDetector>(blobDetector));
 }
 void cv_findContours(Mat* image, vector_Mat* contours, Mat* hierarchy, int mode, int method, Point* offset) {
 	cv::findContours(*image, *contours, *hierarchy, mode, method, *offset);
 }
-void cv_findDataMatrix(Mat* image, vector_string* codes, Mat* corners, vector_Mat* dmtx) {
+void cv_findDataMatrix(Mat* image, vector_String* codes, Mat* corners, vector_Mat* dmtx) {
 	cv::findDataMatrix(*image, *codes, *corners, *dmtx);
+}
+Mat* cv_findEssentialMat(Mat* points1, Mat* points2, double focal, Point2d* pp, int method, double prob, double threshold, Mat* mask) {
+	return new Mat(cv::findEssentialMat(*points1, *points2, focal, *pp, method, prob, threshold, *mask));
 }
 Mat* cv_findFundamentalMat(Mat* points1, Mat* points2, int method, double param1, double param2, Mat* mask) {
 	return new Mat(cv::findFundamentalMat(*points1, *points2, method, param1, param2, *mask));
@@ -652,6 +658,9 @@ void cv_findNonZero(Mat* src, Mat* idx) {
 void cv_KDTree_findOrthoRange(KDTree* self, Mat* minBounds, Mat* maxBounds, Mat* neighborsIdx, Mat* neighbors, Mat* labels) {
 	self->findOrthoRange(*minBounds, *maxBounds, *neighborsIdx, *neighbors, *labels);
 }
+double cv_findTransformECC(Mat* templateImage, Mat* inputImage, Mat* warpMatrix, int motionType, TermCriteria* criteria) {
+	return cv::findTransformECC(*templateImage, *inputImage, *warpMatrix, motionType, *criteria);
+}
 float cv_CvKNearest_find_nearest(CvKNearest* self, Mat* samples, int k, Mat* results, Mat* neighborResponses, Mat* dists) {
 	return self->find_nearest(*samples, k, *results, *neighborResponses, *dists);
 }
@@ -667,6 +676,9 @@ void cv_flip(Mat* src, Mat* dst, int flipCode) {
 int cv_floodFill(Mat* image, Mat* mask, Point* seedPoint, Scalar* newVal, Rect* rect, Scalar* loDiff, Scalar* upDiff, int flags) {
 	return cv::floodFill(*image, *mask, *seedPoint, *newVal, rect, *loDiff, *upDiff, flags);
 }
+int cv_VideoWriter_fourcc(VideoWriter* self, char c1, char c2, char c3, char c4) {
+	return self->fourcc(c1, c2, c3, c4);
+}
 void cv_gemm(Mat* src1, Mat* src2, double alpha, Mat* src3, double gamma, Mat* dst, int flags) {
 	cv::gemm(*src1, *src2, alpha, *src3, gamma, *dst, flags);
 }
@@ -679,20 +691,14 @@ double cv_VideoCapture_get(VideoCapture* self, int propId) {
 Mat* cv_getAffineTransform(Mat* src, Mat* dst) {
 	return new Mat(cv::getAffineTransform(*src, *dst));
 }
-Algorithm* cv_Algorithm_getAlgorithm(Algorithm* self, string* name) {
+Algorithm* cv_Algorithm_getAlgorithm(Algorithm* self, String* name) {
 	return &*self->getAlgorithm(*name);
 }
 cvflann_flann_algorithm_t* cv_Index_getAlgorithm0(Index* self) {
 	return new cvflann_flann_algorithm_t(self->getAlgorithm());
 }
-bool cv_Algorithm_getBool(Algorithm* self, string* name) {
+bool cv_Algorithm_getBool(Algorithm* self, String* name) {
 	return self->getBool(*name);
-}
-string* cv_getBuildInformation() {
-	return new string(cv::getBuildInformation());
-}
-int64 cv_getCPUTickCount() {
-	return cv::getCPUTickCount();
 }
 vector_float* cv_HOGDescriptor_getDaimlerPeopleDetector(HOGDescriptor* self) {
 	return new vector_float(self->getDaimlerPeopleDetector());
@@ -712,7 +718,7 @@ size_t cv_HOGDescriptor_getDescriptorSize(HOGDescriptor* self) {
 cvflann_flann_distance_t* cv_Index_getDistance(Index* self) {
 	return new cvflann_flann_distance_t(self->getDistance());
 }
-double cv_Algorithm_getDouble(Algorithm* self, string* name) {
+double cv_Algorithm_getDouble(Algorithm* self, String* name) {
 	return self->getDouble(*name);
 }
 int cv_Subdiv2D_getEdge(Subdiv2D* self, int edge, int nextEdgeType) {
@@ -721,29 +727,23 @@ int cv_Subdiv2D_getEdge(Subdiv2D* self, int edge, int nextEdgeType) {
 void cv_Subdiv2D_getEdgeList(Subdiv2D* self, vector_Vec4f* edgeList) {
 	self->getEdgeList(*edgeList);
 }
-FileNode* cv_FileStorage_getFirstTopLevelNode(FileStorage* self) {
-	return new FileNode(self->getFirstTopLevelNode());
-}
 Mat* cv_getGaborKernel(Size* ksize, double sigma, double theta, double lambd, double gamma, double psi, int ktype) {
 	return new Mat(cv::getGaborKernel(*ksize, sigma, theta, lambd, gamma, psi, ktype));
 }
 Mat* cv_getGaussianKernel(int ksize, double sigma, int ktype) {
 	return new Mat(cv::getGaussianKernel(ksize, sigma, ktype));
 }
-int cv_Algorithm_getInt(Algorithm* self, string* name) {
+int cv_Algorithm_getInt(Algorithm* self, String* name) {
 	return self->getInt(*name);
 }
-void cv_Algorithm_getList(Algorithm* self, vector_string* algorithms) {
+void cv_Algorithm_getList(Algorithm* self, vector_String* algorithms) {
 	self->getList(*algorithms);
 }
-Mat* cv_Algorithm_getMat(Algorithm* self, string* name) {
+Mat* cv_Algorithm_getMat(Algorithm* self, String* name) {
 	return new Mat(self->getMat(*name));
 }
-vector_Mat* cv_Algorithm_getMatVector(Algorithm* self, string* name) {
+vector_Mat* cv_Algorithm_getMatVector(Algorithm* self, String* name) {
 	return new vector_Mat(self->getMatVector(*name));
-}
-int cv_getNumberOfCPUs() {
-	return cv::getNumberOfCPUs();
 }
 int cv_getOptimalDFTSize(int vecsize) {
 	return cv::getOptimalDFTSize(vecsize);
@@ -751,7 +751,7 @@ int cv_getOptimalDFTSize(int vecsize) {
 Mat* cv_getOptimalNewCameraMatrix(Mat* cameraMatrix, Mat* distCoeffs, Size* imageSize, double alpha, Size* newImgSize, Rect* validPixROI, bool centerPrincipalPoint) {
 	return new Mat(cv::getOptimalNewCameraMatrix(*cameraMatrix, *distCoeffs, *imageSize, alpha, *newImgSize, validPixROI, centerPrincipalPoint));
 }
-void cv_Algorithm_getParams(Algorithm* self, vector_string* names) {
+void cv_Algorithm_getParams(Algorithm* self, vector_String* names) {
 	self->getParams(*names);
 }
 Mat* cv_getPerspectiveTransform(Mat* src, Mat* dst) {
@@ -766,22 +766,16 @@ void cv_getRectSubPix(Mat* image, Size* patchSize, Point2f* center, Mat* patch, 
 Mat* cv_getRotationMatrix2D(Point2f* center, double angle, double scale) {
 	return new Mat(cv::getRotationMatrix2D(*center, angle, scale));
 }
-string* cv_Algorithm_getString(Algorithm* self, string* name) {
-	return new string(self->getString(*name));
+String* cv_Algorithm_getString(Algorithm* self, String* name) {
+	return new String(self->getString(*name));
 }
 Mat* cv_getStructuringElement(int shape, Size* ksize, Point* anchor) {
 	return new Mat(cv::getStructuringElement(shape, *ksize, *anchor));
 }
-Size* cv_getTextSize(string* text, int fontFace, double fontScale, int thickness, int* baseLine) {
+Size* cv_getTextSize(String* text, int fontFace, double fontScale, int thickness, int* baseLine) {
 	return new Size(cv::getTextSize(*text, fontFace, fontScale, thickness, baseLine));
 }
-int64 cv_getTickCount() {
-	return cv::getTickCount();
-}
-double cv_getTickFrequency() {
-	return cv::getTickFrequency();
-}
-int cv_getTrackbarPos(string* trackbarname, string* winname) {
+int cv_getTrackbarPos(String* trackbarname, String* winname) {
 	return cv::getTrackbarPos(*trackbarname, *winname);
 }
 vector_Mat* cv_DescriptorMatcher_getTrainDescriptors(DescriptorMatcher* self) {
@@ -808,7 +802,7 @@ void cv_Subdiv2D_getVoronoiFacetList(Subdiv2D* self, vector_int* idx, vector_vec
 double cv_HOGDescriptor_getWinSigma(HOGDescriptor* self) {
 	return self->getWinSigma();
 }
-double cv_getWindowProperty(string* winname, int prop_id) {
+double cv_getWindowProperty(String* winname, int prop_id) {
 	return cv::getWindowProperty(*winname, prop_id);
 }
 int cv_CvSVM_get_support_vector_count(CvSVM* self) {
@@ -841,16 +835,16 @@ void cv_idft(Mat* src, Mat* dst, int flags, int nonzeroRows) {
 Mat* cv_imdecode(Mat* buf, int flags) {
 	return new Mat(cv::imdecode(*buf, flags));
 }
-bool cv_imencode(string* ext, Mat* img, vector_uchar* buf, vector_int* params) {
+bool cv_imencode(String* ext, Mat* img, vector_uchar* buf, vector_int* params) {
 	return cv::imencode(*ext, *img, *buf, *params);
 }
-Mat* cv_imread(string* filename, int flags) {
+Mat* cv_imread(String* filename, int flags) {
 	return new Mat(cv::imread(*filename, flags));
 }
-void cv_imshow(string* winname, Mat* mat) {
+void cv_imshow(String* winname, Mat* mat) {
 	cv::imshow(*winname, *mat);
 }
-bool cv_imwrite(string* filename, Mat* img, vector_int* params) {
+bool cv_imwrite(String* filename, Mat* img, vector_int* params) {
 	return cv::imwrite(*filename, *img, *params);
 }
 void cv_inRange(Mat* src, Mat* lowerb, Mat* upperb, Mat* dst) {
@@ -898,32 +892,11 @@ void cv_invertAffineTransform(Mat* M, Mat* iM) {
 bool cv_isContourConvex(Mat* contour) {
 	return cv::isContourConvex(*contour);
 }
-bool cv_FileNode_isInt(FileNode* self) {
-	return self->isInt();
-}
-bool cv_FileNode_isMap(FileNode* self) {
-	return self->isMap();
-}
-bool cv_FileNode_isNamed(FileNode* self) {
-	return self->isNamed();
-}
-bool cv_FileNode_isNone(FileNode* self) {
-	return self->isNone();
-}
-bool cv_FileStorage_isOpened(FileStorage* self) {
+bool cv_VideoCapture_isOpened(VideoCapture* self) {
 	return self->isOpened();
 }
 bool cv_VideoWriter_isOpened0(VideoWriter* self) {
 	return self->isOpened();
-}
-bool cv_FileNode_isReal(FileNode* self) {
-	return self->isReal();
-}
-bool cv_FileNode_isSeq(FileNode* self) {
-	return self->isSeq();
-}
-bool cv_FileNode_isString(FileNode* self) {
-	return self->isString();
 }
 bool cv_EM_isTrained(EM* self) {
 	return self->isTrained();
@@ -943,10 +916,10 @@ void cv_Index_knnSearch(Index* self, Mat* query, Mat* indices, Mat* dists, int k
 void cv_line(Mat* img, Point* pt1, Point* pt2, Scalar* color, int thickness, int lineType, int shift) {
 	cv::line(*img, *pt1, *pt2, *color, thickness, lineType, shift);
 }
-bool cv_Index_load(Index* self, Mat* features, string* filename) {
+bool cv_Index_load(Index* self, Mat* features, String* filename) {
 	return self->load(*features, *filename);
 }
-void cv_FaceRecognizer_load1(FaceRecognizer* self, string* filename) {
+void cv_FaceRecognizer_load1(FaceRecognizer* self, String* filename) {
 	self->load(*filename);
 }
 bool cv_HOGDescriptor_load2(HOGDescriptor* self, String* filename, String* objname) {
@@ -1003,6 +976,9 @@ RotatedRect* cv_minAreaRect(Mat* points) {
 void cv_minEnclosingCircle(Mat* points, Point2f* center, float radius) {
 	cv::minEnclosingCircle(*points, *center, radius);
 }
+double cv_minEnclosingTriangle(Mat* points, Mat* triangle) {
+	return cv::minEnclosingTriangle(*points, *triangle);
+}
 void cv_minMaxLoc(Mat* src, double* minVal, double* maxVal, Point* minLoc, Point* maxLoc, Mat* mask) {
 	cv::minMaxLoc(*src, minVal, maxVal, minLoc, maxLoc, *mask);
 }
@@ -1015,7 +991,7 @@ Moments* cv_moments(Mat* array, bool binaryImage) {
 void cv_morphologyEx(Mat* src, Mat* dst, int op, Mat* kernel, Point* anchor, int iterations, int borderType, Scalar* borderValue) {
 	cv::morphologyEx(*src, *dst, op, *kernel, *anchor, iterations, borderType, *borderValue);
 }
-void cv_moveWindow(string* winname, int x, int y) {
+void cv_moveWindow(String* winname, int x, int y) {
 	cv::moveWindow(*winname, x, y);
 }
 void cv_mulSpectrums(Mat* a, Mat* b, Mat* c, int flags, bool conjB) {
@@ -1027,10 +1003,7 @@ void cv_mulTransposed(Mat* src, Mat* dst, bool aTa, Mat* delta, double scale, in
 void cv_multiply(Mat* src1, Mat* src2, Mat* dst, double scale, int dtype) {
 	cv::multiply(*src1, *src2, *dst, scale, dtype);
 }
-string* cv_FileNode_name(FileNode* self) {
-	return new string(self->name());
-}
-void cv_namedWindow(string* winname, int flags) {
+void cv_namedWindow(String* winname, int flags) {
 	cv::namedWindow(*winname, flags);
 }
 int cv_Subdiv2D_nextEdge(Subdiv2D* self, int edge) {
@@ -1045,17 +1018,17 @@ double cv_norm4(Mat* src1, Mat* src2, int normType, Mat* mask) {
 void cv_normalize(Mat* src, Mat* dst, double alpha, double beta, int norm_type, int dtype, Mat* mask) {
 	cv::normalize(*src, *dst, alpha, beta, norm_type, dtype, *mask);
 }
-bool cv_FileStorage_open(FileStorage* self, string* filename, int flags, string* encoding) {
-	return self->open(*filename, flags, *encoding);
+bool cv_VideoCapture_open(VideoCapture* self, String* filename) {
+	return self->open(*filename);
 }
 bool cv_VideoCapture_open1(VideoCapture* self, int device) {
 	return self->open(device);
 }
-bool cv_VideoWriter_open5(VideoWriter* self, string* filename, int fourcc, double fps, Size* frameSize, bool isColor) {
+bool cv_VideoWriter_open5(VideoWriter* self, String* filename, int fourcc, double fps, Size* frameSize, bool isColor) {
 	return self->open(*filename, fourcc, fps, *frameSize, isColor);
 }
-void cv_StereoBM_call(StereoBM* self, Mat* left, Mat* right, Mat* disparity, int disptype) {
-	self->operator ()(*left, *right, *disparity, disptype);
+void cv_Feature2D_call(Feature2D* self, Mat* image, Mat* mask, vector_KeyPoint* keypoints, Mat* descriptors, bool useProvidedKeypoints) {
+	self->operator ()(*image, *mask, *keypoints, *descriptors, useProvidedKeypoints);
 }
 void cv_StarDetector_call(StarDetector* self, Mat* image, vector_KeyPoint* keypoints) {
 	self->operator ()(*image, *keypoints);
@@ -1063,19 +1036,10 @@ void cv_StarDetector_call(StarDetector* self, Mat* image, vector_KeyPoint* keypo
 void cv_StereoVar_call(StereoVar* self, Mat* left, Mat* right, Mat* disp) {
 	self->operator ()(*left, *right, *disp);
 }
-void cv_Feature2D_call(Feature2D* self, Mat* image, Mat* mask, vector_KeyPoint* keypoints, Mat* descriptors, bool useProvidedKeypoints) {
-	self->operator ()(*image, *mask, *keypoints, *descriptors, useProvidedKeypoints);
+String* cv_Algorithm_paramHelp(Algorithm* self, String* name) {
+	return new String(self->paramHelp(*name));
 }
-FileNode* cv_FileStorage_getelem(FileStorage* self, c_string nodename) {
-	return new FileNode(self->operator[](nodename));
-}
-FileNode* cv_FileNode_getelem(FileNode* self, int i) {
-	return new FileNode(self->operator[](i));
-}
-string* cv_Algorithm_paramHelp(Algorithm* self, string* name) {
-	return new string(self->paramHelp(*name));
-}
-int cv_Algorithm_paramType(Algorithm* self, string* name) {
+int cv_Algorithm_paramType(Algorithm* self, String* name) {
 	return self->paramType(*name);
 }
 void cv_patchNaNs(Mat* a, double val) {
@@ -1087,11 +1051,8 @@ void cv_perspectiveTransform(Mat* src, Mat* dst, Mat* m) {
 void cv_phase(Mat* x, Mat* y, Mat* angle, bool angleInDegrees) {
 	cv::phase(*x, *y, *angle, angleInDegrees);
 }
-Point2d* cv_phaseCorrelate(Mat* src1, Mat* src2, Mat* window) {
-	return new Point2d(cv::phaseCorrelate(*src1, *src2, *window));
-}
-Point2d* cv_phaseCorrelateRes(Mat* src1, Mat* src2, Mat* window, double* response) {
-	return new Point2d(cv::phaseCorrelateRes(*src1, *src2, *window, response));
+Point2d* cv_phaseCorrelate(Mat* src1, Mat* src2, Mat* window, double* response) {
+	return new Point2d(cv::phaseCorrelate(*src1, *src2, *window, response));
 }
 double cv_pointPolygonTest(Mat* contour, Point2f* pt, bool measureDist) {
 	return cv::pointPolygonTest(*contour, *pt, measureDist);
@@ -1135,7 +1096,7 @@ void cv_projectPoints(Mat* objectPoints, Mat* rvec, Mat* tvec, Mat* cameraMatrix
 void cv_CvBoost_prune(CvBoost* self, CvSlice* slice) {
 	self->prune(*slice);
 }
-void cv_putText(Mat* img, string* text, Point* org, int fontFace, double fontScale, Scalar* color, int thickness, int lineType, bool bottomLeftOrigin) {
+void cv_putText(Mat* img, String* text, Point* org, int fontFace, double fontScale, Scalar* color, int thickness, int lineType, bool bottomLeftOrigin) {
 	cv::putText(*img, *text, *org, fontFace, fontScale, *color, thickness, lineType, bottomLeftOrigin);
 }
 void cv_pyrDown(Mat* src, Mat* dst, Size* dstsize, int borderType) {
@@ -1150,8 +1111,8 @@ void cv_pyrUp(Mat* src, Mat* dst, Size* dstsize, int borderType) {
 int cv_Index_radiusSearch(Index* self, Mat* query, Mat* indices, Mat* dists, double radius, int maxResults, SearchParams* params) {
 	return self->radiusSearch(*query, *indices, *dists, radius, maxResults, *params);
 }
-void cv_randShuffle_(Mat* dst, double iterFactor) {
-	cv::randShuffle_(*dst, iterFactor);
+void cv_randShuffle(Mat* dst, double iterFactor, RNG* rng) {
+	cv::randShuffle(*dst, iterFactor, rng);
 }
 void cv_randn(Mat* dst, Mat* mean, Mat* stddev) {
 	cv::randn(*dst, *mean, *stddev);
@@ -1162,6 +1123,9 @@ void cv_randu(Mat* dst, Mat* low, Mat* high) {
 bool cv_VideoCapture_read(VideoCapture* self, Mat* image) {
 	return self->read(*image);
 }
+int cv_recoverPose(Mat* E, Mat* points1, Mat* points2, Mat* R, Mat* t, double focal, Point2d* pp, Mat* mask) {
+	return cv::recoverPose(*E, *points1, *points2, *R, *t, focal, *pp, *mask);
+}
 void cv_rectangle(Mat* img, Point* pt1, Point* pt2, Scalar* color, int thickness, int lineType, int shift) {
 	cv::rectangle(*img, *pt1, *pt2, *color, thickness, lineType, shift);
 }
@@ -1171,14 +1135,11 @@ float cv_rectify3Collinear(Mat* cameraMatrix1, Mat* distCoeffs1, Mat* cameraMatr
 void cv_reduce(Mat* src, Mat* dst, int dim, int rtype, int dtype) {
 	cv::reduce(*src, *dst, dim, rtype, dtype);
 }
-void cv_FileStorage_release(FileStorage* self) {
+void cv_Index_release(Index* self) {
 	self->release();
 }
 void cv_VideoWriter_release0(VideoWriter* self) {
 	self->release();
-}
-string* cv_FileStorage_releaseAndGetString(FileStorage* self) {
-	return new string(self->releaseAndGetString());
 }
 void cv_remap(Mat* src, Mat* dst, Mat* map1, Mat* map2, int interpolation, int borderMode, Scalar* borderValue) {
 	cv::remap(*src, *dst, *map1, *map2, interpolation, borderMode, *borderValue);
@@ -1192,22 +1153,22 @@ void cv_reprojectImageTo3D(Mat* disparity, Mat* _3dImage, Mat* Q, bool handleMis
 void cv_resize(Mat* src, Mat* dst, Size* dsize, double fx, double fy, int interpolation) {
 	cv::resize(*src, *dst, *dsize, fx, fy, interpolation);
 }
-void cv_resizeWindow(string* winname, int width, int height) {
+void cv_resizeWindow(String* winname, int width, int height) {
 	cv::resizeWindow(*winname, width, height);
 }
-bool cv_VideoCapture_retrieve(VideoCapture* self, Mat* image, int channel) {
-	return self->retrieve(*image, channel);
-}
-FileNode* cv_FileStorage_root(FileStorage* self, int streamidx) {
-	return new FileNode(self->root(streamidx));
+bool cv_VideoCapture_retrieve(VideoCapture* self, Mat* image, int flag) {
+	return self->retrieve(*image, flag);
 }
 int cv_Subdiv2D_rotateEdge(Subdiv2D* self, int edge, int rotate) {
 	return self->rotateEdge(edge, rotate);
 }
-void cv_Index_save(Index* self, string* filename) {
+int cv_rotatedRectangleIntersection(RotatedRect* rect1, RotatedRect* rect2, Mat* intersectingRegion) {
+	return cv::rotatedRectangleIntersection(*rect1, *rect2, *intersectingRegion);
+}
+void cv_Index_save(Index* self, String* filename) {
 	self->save(*filename);
 }
-void cv_FaceRecognizer_save1(FaceRecognizer* self, string* filename) {
+void cv_FaceRecognizer_save1(FaceRecognizer* self, String* filename) {
 	self->save(*filename);
 }
 void cv_HOGDescriptor_save2(HOGDescriptor* self, String* filename, String* objname) {
@@ -1225,50 +1186,179 @@ void cv_sepFilter2D(Mat* src, Mat* dst, int ddepth, Mat* kernelX, Mat* kernelY, 
 bool cv_VideoCapture_set(VideoCapture* self, int propId, double value) {
 	return self->set(propId, value);
 }
-void cv_Algorithm_setAlgorithm(Algorithm* self, string* name, Algorithm* value) {
-	self->setAlgorithm(*name, value);
+void cv_Algorithm_setAlgorithm(Algorithm* self, String* name, Algorithm* value) {
+	self->setAlgorithm(*name, Ptr<Algorithm>(value));
 }
-void cv_Algorithm_setBool(Algorithm* self, string* name, bool value) {
+void cv_BackgroundSubtractorGMG_setBackgroundPrior(BackgroundSubtractorGMG* self, double bgprior) {
+	self->setBackgroundPrior(bgprior);
+}
+void cv_BackgroundSubtractorMOG_setBackgroundRatio(BackgroundSubtractorMOG* self, double backgroundRatio) {
+	self->setBackgroundRatio(backgroundRatio);
+}
+void cv_BackgroundSubtractorMOG2_setBackgroundRatio1(BackgroundSubtractorMOG2* self, double ratio) {
+	self->setBackgroundRatio(ratio);
+}
+void cv_StereoMatcher_setBlockSize(StereoMatcher* self, int blockSize) {
+	self->setBlockSize(blockSize);
+}
+void cv_Algorithm_setBool(Algorithm* self, String* name, bool value) {
 	self->setBool(*name, value);
 }
 void cv_CLAHE_setClipLimit(CLAHE* self, double clipLimit) {
 	self->setClipLimit(clipLimit);
 }
-void cv_Algorithm_setDouble(Algorithm* self, string* name, double value) {
+void cv_BackgroundSubtractorMOG2_setComplexityReductionThreshold(BackgroundSubtractorMOG2* self, double ct) {
+	self->setComplexityReductionThreshold(ct);
+}
+void cv_BackgroundSubtractorGMG_setDecisionThreshold(BackgroundSubtractorGMG* self, double thresh) {
+	self->setDecisionThreshold(thresh);
+}
+void cv_BackgroundSubtractorGMG_setDefaultLearningRate(BackgroundSubtractorGMG* self, double lr) {
+	self->setDefaultLearningRate(lr);
+}
+void cv_BackgroundSubtractorMOG2_setDetectShadows(BackgroundSubtractorMOG2* self, bool detectShadows) {
+	self->setDetectShadows(detectShadows);
+}
+void cv_StereoMatcher_setDisp12MaxDiff(StereoMatcher* self, int disp12MaxDiff) {
+	self->setDisp12MaxDiff(disp12MaxDiff);
+}
+void cv_Algorithm_setDouble(Algorithm* self, String* name, double value) {
 	self->setDouble(*name, value);
+}
+void cv_BackgroundSubtractorMOG_setHistory(BackgroundSubtractorMOG* self, int nframes) {
+	self->setHistory(nframes);
+}
+void cv_BackgroundSubtractorMOG2_setHistory1(BackgroundSubtractorMOG2* self, int history) {
+	self->setHistory(history);
 }
 void cv_setIdentity(Mat* mtx, Scalar* s) {
 	cv::setIdentity(*mtx, *s);
 }
-void cv_Algorithm_setInt(Algorithm* self, string* name, int value) {
+void cv_Algorithm_setInt(Algorithm* self, String* name, int value) {
 	self->setInt(*name, value);
 }
-void cv_Algorithm_setMat(Algorithm* self, string* name, Mat* value) {
+void cv_Algorithm_setMat(Algorithm* self, String* name, Mat* value) {
 	self->setMat(*name, *value);
 }
-void cv_Algorithm_setMatVector(Algorithm* self, string* name, vector_Mat* value) {
+void cv_Algorithm_setMatVector(Algorithm* self, String* name, vector_Mat* value) {
 	self->setMatVector(*name, *value);
+}
+void cv_BackgroundSubtractorGMG_setMaxFeatures(BackgroundSubtractorGMG* self, int maxFeatures) {
+	self->setMaxFeatures(maxFeatures);
+}
+void cv_BackgroundSubtractorGMG_setMaxVal(BackgroundSubtractorGMG* self, double val) {
+	self->setMaxVal(val);
+}
+void cv_StereoMatcher_setMinDisparity(StereoMatcher* self, int minDisparity) {
+	self->setMinDisparity(minDisparity);
+}
+void cv_BackgroundSubtractorGMG_setMinVal(BackgroundSubtractorGMG* self, double val) {
+	self->setMinVal(val);
+}
+void cv_StereoSGBM_setMode(StereoSGBM* self, int mode) {
+	self->setMode(mode);
+}
+void cv_BackgroundSubtractorMOG_setNMixtures(BackgroundSubtractorMOG* self, int nmix) {
+	self->setNMixtures(nmix);
+}
+void cv_BackgroundSubtractorMOG2_setNMixtures1(BackgroundSubtractorMOG2* self, int nmixtures) {
+	self->setNMixtures(nmixtures);
+}
+void cv_BackgroundSubtractorMOG_setNoiseSigma(BackgroundSubtractorMOG* self, double noiseSigma) {
+	self->setNoiseSigma(noiseSigma);
+}
+void cv_StereoMatcher_setNumDisparities(StereoMatcher* self, int numDisparities) {
+	self->setNumDisparities(numDisparities);
+}
+void cv_BackgroundSubtractorGMG_setNumFrames(BackgroundSubtractorGMG* self, int nframes) {
+	self->setNumFrames(nframes);
+}
+void cv_StereoSGBM_setP1(StereoSGBM* self, int P1) {
+	self->setP1(P1);
+}
+void cv_StereoSGBM_setP2(StereoSGBM* self, int P2) {
+	self->setP2(P2);
+}
+void cv_StereoBM_setPreFilterCap(StereoBM* self, int preFilterCap) {
+	self->setPreFilterCap(preFilterCap);
+}
+void cv_StereoSGBM_setPreFilterCap1(StereoSGBM* self, int preFilterCap) {
+	self->setPreFilterCap(preFilterCap);
+}
+void cv_StereoBM_setPreFilterSize(StereoBM* self, int preFilterSize) {
+	self->setPreFilterSize(preFilterSize);
+}
+void cv_StereoBM_setPreFilterType(StereoBM* self, int preFilterType) {
+	self->setPreFilterType(preFilterType);
+}
+void cv_BackgroundSubtractorGMG_setQuantizationLevels(BackgroundSubtractorGMG* self, int nlevels) {
+	self->setQuantizationLevels(nlevels);
+}
+void cv_StereoBM_setROI1(StereoBM* self, Rect* roi1) {
+	self->setROI1(*roi1);
+}
+void cv_StereoBM_setROI2(StereoBM* self, Rect* roi2) {
+	self->setROI2(*roi2);
 }
 void cv_HOGDescriptor_setSVMDetector(HOGDescriptor* self, Mat* _svmdetector) {
 	self->setSVMDetector(*_svmdetector);
 }
-void cv_Algorithm_setString(Algorithm* self, string* name, string* value) {
+void cv_BackgroundSubtractorMOG2_setShadowThreshold(BackgroundSubtractorMOG2* self, double threshold) {
+	self->setShadowThreshold(threshold);
+}
+void cv_BackgroundSubtractorMOG2_setShadowValue(BackgroundSubtractorMOG2* self, int value) {
+	self->setShadowValue(value);
+}
+void cv_StereoBM_setSmallerBlockSize(StereoBM* self, int blockSize) {
+	self->setSmallerBlockSize(blockSize);
+}
+void cv_BackgroundSubtractorGMG_setSmoothingRadius(BackgroundSubtractorGMG* self, int radius) {
+	self->setSmoothingRadius(radius);
+}
+void cv_StereoMatcher_setSpeckleRange(StereoMatcher* self, int speckleRange) {
+	self->setSpeckleRange(speckleRange);
+}
+void cv_StereoMatcher_setSpeckleWindowSize(StereoMatcher* self, int speckleWindowSize) {
+	self->setSpeckleWindowSize(speckleWindowSize);
+}
+void cv_Algorithm_setString(Algorithm* self, String* name, String* value) {
 	self->setString(*name, *value);
+}
+void cv_StereoBM_setTextureThreshold(StereoBM* self, int textureThreshold) {
+	self->setTextureThreshold(textureThreshold);
 }
 void cv_CLAHE_setTilesGridSize(CLAHE* self, Size* tileGridSize) {
 	self->setTilesGridSize(*tileGridSize);
 }
-void cv_setTrackbarPos(string* trackbarname, string* winname, int pos) {
+void cv_setTrackbarPos(String* trackbarname, String* winname, int pos) {
 	cv::setTrackbarPos(*trackbarname, *winname, pos);
 }
-void cv_setUseOptimized(bool onoff) {
-	cv::setUseOptimized(onoff);
+void cv_StereoBM_setUniquenessRatio(StereoBM* self, int uniquenessRatio) {
+	self->setUniquenessRatio(uniquenessRatio);
 }
-void cv_setWindowProperty(string* winname, int prop_id, double prop_value) {
+void cv_StereoSGBM_setUniquenessRatio1(StereoSGBM* self, int uniquenessRatio) {
+	self->setUniquenessRatio(uniquenessRatio);
+}
+void cv_BackgroundSubtractorGMG_setUpdateBackgroundModel(BackgroundSubtractorGMG* self, bool update) {
+	self->setUpdateBackgroundModel(update);
+}
+void cv_BackgroundSubtractorMOG2_setVarInit(BackgroundSubtractorMOG2* self, double varInit) {
+	self->setVarInit(varInit);
+}
+void cv_BackgroundSubtractorMOG2_setVarMax(BackgroundSubtractorMOG2* self, double varMax) {
+	self->setVarMax(varMax);
+}
+void cv_BackgroundSubtractorMOG2_setVarMin(BackgroundSubtractorMOG2* self, double varMin) {
+	self->setVarMin(varMin);
+}
+void cv_BackgroundSubtractorMOG2_setVarThreshold(BackgroundSubtractorMOG2* self, double varThreshold) {
+	self->setVarThreshold(varThreshold);
+}
+void cv_BackgroundSubtractorMOG2_setVarThresholdGen(BackgroundSubtractorMOG2* self, double varThresholdGen) {
+	self->setVarThresholdGen(varThresholdGen);
+}
+void cv_setWindowProperty(String* winname, int prop_id, double prop_value) {
 	cv::setWindowProperty(*winname, prop_id, prop_value);
-}
-size_t cv_FileNode_size(FileNode* self) {
-	return self->size();
 }
 bool cv_solve(Mat* src1, Mat* src2, Mat* dst, int flags) {
 	return cv::solve(*src1, *src2, *dst, flags);
@@ -1366,9 +1456,6 @@ void cv_transpose(Mat* src, Mat* dst) {
 void cv_triangulatePoints(Mat* projMatr1, Mat* projMatr2, Mat* projPoints1, Mat* projPoints2, Mat* points4D) {
 	cv::triangulatePoints(*projMatr1, *projMatr2, *projPoints1, *projPoints2, *points4D);
 }
-int cv_FileNode_type(FileNode* self) {
-	return self->type();
-}
 void cv_undistort(Mat* src, Mat* dst, Mat* cameraMatrix, Mat* distCoeffs, Mat* newCameraMatrix) {
 	cv::undistort(*src, *dst, *cameraMatrix, *distCoeffs, *newCameraMatrix);
 }
@@ -1380,9 +1467,6 @@ void cv_FaceRecognizer_update(FaceRecognizer* self, vector_Mat* src, Mat* labels
 }
 void cv_updateMotionHistory(Mat* silhouette, Mat* mhi, double timestamp, double duration) {
 	cv::updateMotionHistory(*silhouette, *mhi, timestamp, duration);
-}
-bool cv_useOptimized() {
-	return cv::useOptimized();
 }
 void cv_validateDisparity(Mat* disparity, Mat* cost, int minDisparity, int numberOfDisparities, int disp12MaxDisp) {
 	cv::validateDisparity(*disparity, *cost, minDisparity, numberOfDisparities, disp12MaxDisp);
