@@ -26,10 +26,10 @@ library
                           , cbits/capture_from_file.cpp
     cc-options:             -fpermissive -O3
     if arch(x86_64)
-      cc-options:             -fpermissive -O3 -DPRIuMAX="lu" -DPRIdMAX="ld"
+      cc-options:           -fpermissive -O3 -DPRIuMAX="lu" -DPRIdMAX="ld"
     if arch(i386)
-      cc-options:             -fpermissive -O3 -DPRIuMAX="llu" -DPRIdMAX="lld"
-    ghc-options:            -pgml g++ -O2
+      cc-options:           -fpermissive -O3 -DPRIuMAX="llu" -DPRIdMAX="lld"
+    ghc-options:            -pgml g++
     exposed-modules:        OpenCVRaw.Types
                           , OpenCVRaw.Consts
                           , OpenCVRaw.Funcs
