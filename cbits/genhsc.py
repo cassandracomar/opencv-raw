@@ -72,11 +72,13 @@ class HSCWrapperGen(object):
         name = name.replace("struct ", "")
         name = name.replace(".", "_")
         name = name.replace("Ptr_", "")
+        name = name.replace("explicit", "")
+        name = name.strip()
 
         if name in exceptions:
             name = exceptions[name]
 
-        if not (name in self.types or name in simple_types):
+        if not (name in self.types or name in simple_types or name == ""):
             self.hsc_types.write("#opaque_t %s\n" % name)
             self.types[name] = typeinfo
 
@@ -127,7 +129,7 @@ class HSCWrapperGen(object):
         typelist = list(cgen.types.items())
         typelist.sort()
         for n, t in typelist:
-                self.gen_type(t)
+            self.gen_type(t)
 
         funclist = list(cgen.funcs.items())
         funclist.sort()
