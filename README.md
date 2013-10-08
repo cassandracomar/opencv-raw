@@ -3,7 +3,9 @@ opencv-raw
 
 Raw Haskell bindings to OpenCV >= 2.0
 
-This package is headed for inclusion into OpenCV.
+This package is headed for inclusion into OpenCV. Therefore, this repository is now defunct. All work will be carried on in my [opencv
+fork](https://github.com/arjuncomar/opencv), and will eventually be merged into HEAD. Feel free to report issues here or there,
+I'll be watching both repos.
 
 
 Compilation / Installation
