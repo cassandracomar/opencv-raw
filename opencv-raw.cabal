@@ -26,9 +26,9 @@ library
                           , cbits/capture_from_file.cpp
     cc-options:             -fpermissive
     if arch(x86_64)
-      cc-options:             -fpermissive -DPRIuMAX="lu" -DPRIdMAX="ld"
+      cc-options:           -fpermissive -DPRIuMAX="lu" -DPRIdMAX="ld"
     if arch(i386)
-      cc-options:             -fpermissive -DPRIuMAX="llu" -DPRIdMAX="lld"
+      cc-options:           -fpermissive -DPRIuMAX="llu" -DPRIdMAX="lld"
     ghc-options:            -pgml g++
 
     exposed-modules:        OpenCVRaw.Types
