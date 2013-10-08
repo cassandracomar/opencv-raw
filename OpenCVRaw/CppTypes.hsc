@@ -13,3 +13,9 @@ import Foreign.Ptr
 
 #ccall std_create_vector_int , Ptr CInt -> CSize -> IO (Ptr <vector_int>)
 
+#ccall std_create_string , Ptr CChar -> CSize -> IO (Ptr <String>)
+
+toStdString :: String -> IO (Ptr C'String)
+toStdString s = do
+  (cs,l) <- newCStringLen s
+  c'std_create_string cs (fromIntegral l)

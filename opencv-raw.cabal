@@ -19,9 +19,11 @@ library
     includes:               cbits/opencv_generated.hpp
                           , cbits/cpptypes.hpp
                           , cbits/mat.hpp
+                          , cbits/capture_from_file.hpp
     c-sources:              cbits/opencv_generated.cpp
                           , cbits/cpptypes.cpp
                           , cbits/mat.cpp
+                          , cbits/capture_from_file.cpp
     cc-options:             -fpermissive
     ghc-options:            -pgml g++
     exposed-modules:        OpenCVRaw.Types
@@ -30,6 +32,8 @@ library
                           , OpenCVRaw.CppTypes
                           , OpenCVRaw.Mat
                           , OpenCVRaw.Point
+                          , OpenCVRaw.CapFile
+                          , OpenCVRaw.Extras
     pkgconfig-depends:      opencv
     build-depends:          base >=4.6 && <4.7
                           , bindings-DSL >= 1.0.17 && <= 1.1
