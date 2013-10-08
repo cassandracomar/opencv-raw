@@ -80,6 +80,7 @@ class ConstInfo(object):
 class ArgInfo(object):
     def __init__(self, arg_tuple):
         self.tp = TypeInfo.ptr.sub(r"\1*", arg_tuple[0])
+        self.truetp = arg_tuple[0]
         self.name = arg_tuple[1]
         self.defval = arg_tuple[2]
         self.isarray = False
@@ -207,8 +208,15 @@ class FuncInfo(object):
         call = prefix + "%s(" % (postfix,)
 
         for arg in args:
-            s = "" if arg.tp in simple_types or arg.tp.endswith("*") else "*"
-            call += s + arg.name + ", "
+            smart_ptr = arg.truetp.startswith("Ptr_")
+            name = arg.name
+            if smart_ptr:
+                name = "Ptr<" + arg.tp[:-1] + ">(" + arg.name + ")"
+
+            simple = arg.tp in simple_types
+            ptr = arg.tp.endswith("*")
+            s = "" if simple or ptr else "*"
+            call += s + name + ", "
 
         call = self.fix_call(call)
         code += "\t" + ret + call
@@ -348,7 +356,7 @@ class CWrapperGenerator(object):
                     self.add_const(name.replace("const ", "").strip(), decl)
                 else:
                     self.add_func(decl)
-            self.header.write("#include <" + hdr + ">\n")
+            #self.header.write("#include <" + hdr + ">\n")
 
     def gen(self, header_dir, srcfiles, output_path):
         self.clear()
