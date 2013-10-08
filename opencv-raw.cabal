@@ -38,6 +38,7 @@ library
                           , OpenCVRaw.Mat
                           , OpenCVRaw.Point
                           , OpenCVRaw.CapFile
+                          , OpenCVRaw.Extras
     pkgconfig-depends:      opencv
     build-depends:          base >=4.6 && <4.7
                           , bindings-DSL >= 1.0.17 && <= 1.1
