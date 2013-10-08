@@ -79,6 +79,7 @@ import Foreign.C.Types
 #opaque_t Index
 #opaque_t flann_algorithm_t
 #opaque_t flann_distance_t
+#opaque_t explicit
 #opaque_t HOGDescriptor
 #opaque_t vector_DMatch
 #opaque_t vector_KeyPoint
